@@ -1,7 +1,7 @@
 Project:resonate-springboot-rest-exercise
 This is a spring boot REST api exercise.
 
-Supports and tested on
+Tested on:
 Java 1.8
 Gradle: gradle-7.1.1
 
