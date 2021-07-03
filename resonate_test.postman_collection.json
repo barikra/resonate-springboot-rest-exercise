@@ -1,0 +1,89 @@
+{
+	"id": "30c4d39e-3c2a-f6a5-e78c-2917855f63e4",
+	"name": "resonate_test",
+	"description": "",
+	"order": [
+		"29d8ca0c-1802-55ce-208f-4676b7eb215e",
+		"2a4cae10-f47b-1008-c495-99556060e0a1",
+		"5045557a-c1b1-33fb-09cf-661a5eafc1d9"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1625274650880,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "29d8ca0c-1802-55ce-208f-4676b7eb215e",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8080/api/v1/book",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1625286287335,
+			"name": "createNewBook",
+			"description": "Will add a book",
+			"collectionId": "30c4d39e-3c2a-f6a5-e78c-2917855f63e4",
+			"responses": [],
+			"rawModeData": "{\n\t\"rating\": \"5\",\n    \"date\": \"2021-08-03T01:14:39.302+00:00\",\n    \"author\": \"Best Author 4\",\n    \"title\": \"Test book 4\",\n    \"isbn\": \"1234abcd\"\n}"
+		},
+		{
+			"id": "2a4cae10-f47b-1008-c495-99556060e0a1",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost:8080/api/v1/book/1234",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1625282971001,
+			"name": "GetBookByIsin",
+			"description": "Get the book for ID",
+			"collectionId": "30c4d39e-3c2a-f6a5-e78c-2917855f63e4",
+			"responses": []
+		},
+		{
+			"id": "5045557a-c1b1-33fb-09cf-661a5eafc1d9",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost:8080/api/v1/books",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1625282974719,
+			"name": "GetListOfBooks",
+			"description": "Get list of available book",
+			"collectionId": "30c4d39e-3c2a-f6a5-e78c-2917855f63e4",
+			"responses": []
+		}
+	]
+}

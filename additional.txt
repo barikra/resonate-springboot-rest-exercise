@@ -1,0 +1,7 @@
+- Describe (no need to code) how you can secure this endpoint using Spring Security using Oauth2 in a file and include the text file in the root of the project
+We can use spring-boot-starter-oauth2-client to protect the endpoints. There is a document attached Oauth2Example
+
+- Describe how you can document this API for consumers of the API
+There are many but I have used Apiary and Swagger. I have migrated  Apiary  to  swagger as it is annotation based, easy to use and dynamic to accommodate end points changes. There are many options for customization however need a separate server for endpoint  access for end users. 
+- Describe any design pattern you have leveraged in your solution.
+There are many spring design pattern used including IOC, Singleton and used repository, service layer. followed best practices including SOLID over STUPID.

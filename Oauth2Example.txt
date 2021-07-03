@@ -1,0 +1,81 @@
+Here are the few steps that required for oauth2:
+
+Step 1 – The Consumer initiates request
+
+Step 2 – The Consumer Gets Permission based on user/password.
+
+Step 3 – The Consumer Is Redirected to the Service Provider
+
+Step 4 – The Consumer get Permission
+
+Step 5 – The Consumer Obtains an Access Token
+
+Step 6 – The Consumer Accesses the Protected Resource
+
+Step 7 - Consumer can logout or after timeout  the token will be invalidated.
+
+Some sample code:
+
+1. The end point can be protected using something similar to given example below:
+
+@EnableWebSecurity
+public class UiSecurityConfig extends WebSecurityConfigurerAdapter {
+   
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+        http.antMatcher("/**")
+          .authorizeRequests()
+          .antMatchers("/")
+          .permitAll()
+          .anyRequest()
+          .authenticated()
+          .and()
+          .oauth2Login();
+    }
+
+    @Bean
+    WebClient webClient(ClientRegistrationRepository clientRegistrationRepository,
+      OAuth2AuthorizedClientRepository authorizedClientRepository) {
+        ServletOAuth2AuthorizedClientExchangeFilterFunction oauth2 =
+          new ServletOAuth2AuthorizedClientExchangeFilterFunction(clientRegistrationRepository,
+          authorizedClientRepository);
+        oauth2.setDefaultOAuth2AuthorizedClient(true);
+        return WebClient.builder().apply(oauth2.oauth2Configuration()).build();
+    }
+
+2. The provider, client and resource server can be configured using
+
+application.yml
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          custom:
+            client-id: ssoClient-1
+            client-secret: ssoClientSecret-1
+            scope: read,write
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8080/api/vi/login/oauth2/code/custom
+        provider:
+          custom:
+            authorization-uri: http://localhost:8083/auth/realms/ssoprovider/protocol/openid-connect/auth
+            token-uri: http://localhost:8083/auth/realms/ssoprovider/protocol/openid-connect/token
+            user-info-uri: http://localhost:8083/auth/realms/ssoprovider/protocol/openid-connect/userinfo
+            user-name-attribute: preferred_username
+  thymeleaf:
+    cache: false
+   
+server:
+  port: 8082
+  servlet:
+    context-path: /api/vi
+
+resourceserver:
+  api:
+    project:
+      url: http://localhost:8081/sso-resource-server/api/foos/  
+
+3. Then based UserAuthentication Principal and Authority the end points can be protected.
+
